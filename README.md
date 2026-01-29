@@ -1,2 +1,1 @@
-#output
- https://mufeena.github.io/digital_evaluation/
+#output https://mufeena.github.io/digital_evaluation/
