@@ -17,7 +17,7 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
   const exists = staffList.some(staff => staff.email === email);
   if (exists) {
     msg.style.color = "red";
-    msg.textContent = "Staff already registered";
+    msg.textContent = "Email already registered";
     return;
   }
 
