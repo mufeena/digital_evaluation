@@ -1,67 +1,21 @@
-/*****************************
- GET ELEMENTS (SAFE)
-*****************************/
-const signupForm = document.getElementById("signupForm");
-const loginForm = document.getElementById("loginForm");
-
-const name = document.getElementById("name");
-const username = document.getElementById("username");
-const password = document.getElementById("password");
-const msg = document.getElementById("msg");
-
-/*****************************
- STAFF SIGNUP
-*****************************/
-signupForm?.addEventListener("submit", e => {
+document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  if (!username.value || !password.value) {
-    msg.textContent = "Email and password are required";
-    return;
-  }
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const msg = document.getElementById("msg");
 
-  const staff = {
-    name: name.value,
-    username: username.value,
-    password: password.value
-  };
+  let staffList = JSON.parse(localStorage.getItem("staffList")) || [];
 
-  localStorage.setItem(
-    "staff_" + staff.username,
-    JSON.stringify(staff)
+  const staff = staffList.find(
+    user => user.email === email && user.password === password
   );
 
-  msg.textContent = "Registration successful! Please login.";
-  signupForm.reset();
-});
-
-/*****************************
- LOGIN
-*****************************/
-loginForm?.addEventListener("submit", e => {
-  e.preventDefault();
-
-  const user = username.value;
-  const pass = password.value;
-
-  if (!user || !pass) {
-    msg.textContent = "Enter email and password";
-    return;
-  }
-
-  const staffData = localStorage.getItem("staff_" + user);
-
-  if (!staffData) {
-    msg.textContent = "User not registered";
-    return;
-  }
-
-  const staff = JSON.parse(staffData);
-
-  if (staff.password === pass) {
-    localStorage.setItem("loggedStaff", user);
-    window.location.href = "dashboard.html"; // change if needed
+  if (staff) {
+    localStorage.setItem("loggedStaff", JSON.stringify(staff));
+    window.location.href = "../evaluation/evaluation.html";
   } else {
-    msg.textContent = "Invalid credentials";
+    msg.style.color = "red";
+    msg.textContent = "Invalid Email or Password";
   }
 });
