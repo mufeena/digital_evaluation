@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Answer Sheet Evaluation</title>
   <link rel="stylesheet" href="evaluation.css">
-  <button id="logoutBtn" style="
+</head>
+
+<body>
+
+<!-- Logout Button (SAFE POSITION) -->
+<button id="logoutBtn" style="
   position: fixed;
   top: 10px;
   right: 40px;
@@ -16,40 +21,36 @@
   border-radius: 5px;
   cursor: pointer;
 ">
-Logout
+  Logout
 </button>
 
-</head>
-<body>
-  <div class="container">
-    <!-- Left side -->
-    <div class="left">
-      <div class="header">
-        <div>
-          Reg. No: 
-          <select id="studentSelect">
-            <option value="">--Select Student--</option>
-            <option value="answer_sheet1.pdf">001</option>
-            <option value="answer_sheet2.pdf">002</option>
-            <option value="student3.png">003</option>
-            <option value="student4.png">004</option>
-          </select>
-        </div>
-        <div>Major Paper: ________</div>
+<div class="container">
+  <!-- Left side -->
+  <div class="left">
+    <div class="header">
+      <div>
+        Reg. No:
+        <select id="studentSelect">
+          <option value="">--Select Student--</option>
+          <option value="answer_sheet1.pdf">001</option>
+          <option value="answer_sheet2.pdf">002</option>
+          <option value="student3.png">003</option>
+          <option value="student4.png">004</option>
+        </select>
       </div>
-      <div class="answer-area" id="pdfContainer">
-        <p>Select a student to view the answer sheet</p>
-      </div>
+      <div>Major Paper: ________</div>
     </div>
 
-    <!-- Right side -->
-    <div class="right">
-      <!-- Sections 1–4 and OBE as before -->
-      <!-- (Copy your previous HTML for sections & totals here) -->
-      <!-- For brevity, I’m leaving them unchanged -->
-      <div id="sectionsContainer">
-        <!-- Sections 1–4 + OBE HTML here -->
-         <!-- Section 1 -->
+    <div class="answer-area" id="pdfContainer">
+      <p>Select a student to view the answer sheet</p>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="right">
+    <div id="sectionsContainer">
+
+      <!-- Section 1 -->
       <div class="section" id="sec1">
         <div class="section-title">Section - 1 (1 Mark Each)</div>
         <div class="marks-grid">
@@ -102,21 +103,19 @@ Logout
           <div class="qbox">Q26 <input type="number" min="0" max="10" class="sec4"></div>
           <div class="qbox">Q27 <input type="number" min="0" max="10" class="sec4"></div>
           <div class="qbox">Q28 <input type="number" min="0" max="10" class="sec4"></div>
-          
         </div>
       </div>
 
-      <!-- Section 5 OBE Evaluation -->
+      <!-- OBE -->
       <div class="section" id="sec5">
-  <div class="section-title">Section - 5 : Cognitive Level (Auto Calculated)</div>
-  <table>
-    <tr><th>Level</th><th>Total Marks</th></tr>
-    <tr><td>LOT</td><td id="lotTotal">0</td></tr>
-    <tr><td>MOT</td><td id="motTotal">0</td></tr>
-    <tr><td>HOT</td><td id="hotTotal">0</td></tr>
-  </table>
-</div>
-
+        <div class="section-title">Section - 5 : Cognitive Level (Auto Calculated)</div>
+        <table>
+          <tr><th>Level</th><th>Total Marks</th></tr>
+          <tr><td>LOT</td><td id="lotTotal">0</td></tr>
+          <tr><td>MOT</td><td id="motTotal">0</td></tr>
+          <tr><td>HOT</td><td id="hotTotal">0</td></tr>
+        </table>
+      </div>
 
       <!-- Totals -->
       <div class="totals">
@@ -127,13 +126,25 @@ Logout
         <div>OBE Total: <span id="total5">0</span></div>
         <div class="grand">Grand Total: <span id="grand">0</span></div>
       </div>
-      </div>
-    </div>
-         
-      </div>
+
     </div>
   </div>
+</div>
 
-  <script src="evaluation.js"></script>
+<!-- 🔐 AUTH PROTECTION + LOGOUT (SAFE ADDITION) -->
+<script>
+  const staff = JSON.parse(localStorage.getItem("loggedStaff"));
+
+  if (!staff) {
+    window.location.href = "../auth/login.html";
+  }
+
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("loggedStaff");
+    window.location.href = "../auth/login.html";
+  });
+</script>
+
+<script src="evaluation.js"></script>
 </body>
 </html>
