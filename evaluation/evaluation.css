@@ -1,0 +1,51 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+.container { display: grid; grid-template-columns: 2fr 1fr; height: 100vh; border: 2px solid black; }
+.left { border-right: 2px solid black; padding: 20px; }
+.header { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: bold; align-items:center; }
+.answer-area { border: 1px solid #999; height: calc(100% - 60px); text-align: center; padding: 0; background: #fafafa; }
+.right { padding: 20px; overflow-y: auto; }
+.section { margin-bottom: 20px; }
+.section-title { font-weight: bold; font-size: 16px; margin-bottom: 10px; text-align: center; }
+.marks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.qbox { border: 2px solid black; border-radius: 4px; padding: 5px; display: flex; flex-direction: column; align-items: center; font-size: 13px; font-weight: bold; }
+.qbox input { width: 40px; height: 22px; text-align: center; font-size: 12px; border: none; border-top: 1px solid black; margin-top: 2px; }
+.qbox textarea { width: 90%; font-size: 11px; margin-top: 4px; border: 1px dashed red; resize: vertical; display: none; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+table, th, td { border: 2px solid black; }
+th, td { padding: 8px; text-align: center; font-size: 13px; }
+.totals { border: 2px solid black; padding: 10px; margin-top: 15px; }
+.totals div { display: flex; justify-content: space-between; font-weight: bold; padding: 4px 0; font-size: 14px; }
+.totals .grand { font-size: 16px; color: darkred; }
+#pdfContainer {
+  position: relative;
+  overflow: auto;   /* 🔥 REQUIRED */
+  height: 100%;
+}
+#cognitiveSummary {
+  margin-top: 20px;
+  border: 2px solid #000;
+  padding: 10px;
+}
+
+#cognitiveSummary h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.obe-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.obe-table th,
+.obe-table td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.obe-table th {
+  background: #f2f2f2;
+}
+
